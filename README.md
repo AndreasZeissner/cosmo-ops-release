@@ -14,3 +14,5 @@ Go to: https://test-company-jc.sentry.io/settings/account/api/auth-tokens/
 and create a token with the following token org:read project:releases and replace the one in the vercel config.
 
 reference: https://forum.sentry.io/t/403-error-adding-commits-to-release/4708
+
+- https://help.sentry.io/account/legal/are-you-compliant-with-general-data-protection-regulation-gdpr/
