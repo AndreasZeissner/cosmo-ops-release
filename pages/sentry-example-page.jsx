@@ -11,7 +11,7 @@ export default function Page() {
 
       <main
         style={{
-          backgroundColor: "red",
+          backgroundColor: "blue",
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
