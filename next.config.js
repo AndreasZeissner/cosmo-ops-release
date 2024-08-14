@@ -11,6 +11,38 @@ module.exports = withSentryConfig(
 
     org: "test-company-jc",
     project: "cosmo-ops-release",
+        sourcemaps: {
+        /**
+         * Disable any functionality related to source maps upload.
+         */
+        disable: false,
+        /**
+         * A glob or an array of globs that specifies the build artifacts that should be uploaded to Sentry.
+         *
+         * If this option is not specified, the plugin will try to upload all JavaScript files and source map files that are created during build.
+         *
+         * The globbing patterns follow the implementation of the `glob` package. (https://www.npmjs.com/package/glob)
+         *
+         * Use the `debug` option to print information about which files end up being uploaded.
+         */
+        // assets: [],
+        /**
+         * A glob or an array of globs that specifies which build artifacts should not be uploaded to Sentry.
+         *
+         * Default: `[]`
+         *
+         * The globbing patterns follow the implementation of the `glob` package. (https://www.npmjs.com/package/glob)
+         *
+         * Use the `debug` option to print information about which files end up being uploaded.
+         */
+        // ignore: [];
+        /**
+         * Toggle whether generated source maps within your Next.js build folder should be automatically deleted after being uploaded to Sentry.
+         *
+         * Defaults to `false`.
+         */
+        deleteSourcemapsAfterUpload: true,
+    },
 
     // Only print logs for uploading source maps in CI
     silent: !process.env.CI,
