@@ -38,6 +38,97 @@ module.exports = withSentryConfig(
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,
 
+    release: {
+        /**
+         * Unique identifier for the release you want to create.
+         *
+         * This value can also be specified via the `SENTRY_RELEASE` environment variable.
+         *
+         * Defaults to automatically detecting a value for your environment.
+         * This includes values for Cordova, Heroku, AWS CodeBuild, CircleCI, Xcode, and Gradle, and otherwise uses the git `HEAD`'s commit SHA.
+         * (the latter requires access to git CLI and for the root directory to be a valid repository)
+         *
+         * If you didn't provide a value and the plugin can't automatically detect one, no release will be created.
+         */
+        name: "cosmo-ops-release",
+        /**
+         * Whether the plugin should create a release on Sentry during the build.
+         * Note that a release may still appear in Sentry even if this is value is `false` because any Sentry event that has a release value attached will automatically create a release.
+         * (for example via the `inject` option)
+         *
+         * Defaults to `true`.
+         */
+        create: true,
+        /**
+         * Whether the Sentry release should be automatically finalized (meaning an end timestamp is added) after the build ends.
+         *
+         * Defaults to `true`.
+         */
+        finalize: true,
+        /**
+         * Unique identifier for the distribution, used to further segment your release.
+         * Usually your build number.
+         */
+        // dist: "",
+        /**
+         * Version control system remote name.
+         *
+         * This value can also be specified via the `SENTRY_VSC_REMOTE` environment variable.
+         *
+         * Defaults to 'origin'.
+         */
+        vcsRemote: "origin",
+        /**
+         * Associates the release with its commits in Sentry.
+         */
+        setCommits: {
+            /**
+             * Automatically sets `commit` and `previousCommit`. Sets `commit` to `HEAD`
+             * and `previousCommit` as described in the option's documentation.
+             *
+             * If you set this to `true`, manually specified `commit` and `previousCommit`
+             * options will be overridden. It is best to not specify them at all if you
+             * set this option to `true`.
+             */
+            auto: false,
+            /**
+             * The full repo name as defined in Sentry.
+             *
+             * Required if the `auto` option is not set to `true`.
+             */
+            // repo: "",
+            /**
+             * The current (last) commit in the release.
+             *
+             * Required if the `auto` option is not set to `true`.
+             */
+            // commit: "",
+            /**
+             * The commit before the beginning of this release (in other words,
+             * the last commit of the previous release).
+             *
+             * Defaults to the last commit of the previous release in Sentry.
+             *
+             * If there was no previous release, the last 10 commits will be used.
+             */
+            // previousCommit: "",
+            /**
+             * If the flag is to `true` and the previous release commit was not found
+             * in the repository, the plugin creates a release with the default commits
+             * count instead of failing the command.
+             *
+             * Defaults to `false`.
+             */
+            // ignoreMissing: false,
+            /**
+             * If this flag is set, the setCommits step will not fail and just exit
+             * silently if no new commits for a given release have been found.
+             *
+             * Defaults to `false`.
+             */
+            // ignoreEmpty: false,
+        }
+    },
     // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
     // See the following for more information:
     // https://docs.sentry.io/product/crons/
