@@ -90,7 +90,7 @@ module.exports = withSentryConfig(
              * options will be overridden. It is best to not specify them at all if you
              * set this option to `true`.
              */
-            auto: false,
+            auto: true,
             /**
              * The full repo name as defined in Sentry.
              *
